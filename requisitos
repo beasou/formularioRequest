@@ -1,0 +1,28 @@
+- input pesquisa por cep
+- embaixo campo estado(select em maiusculo) - tem que aparecer são paulo ex
+- embaixo cidade só pra mostrar(n editavel)
+- nome da rua, numero
+
+- quando chegar no ultimo digito vai buscar(botão salvar)
+- enquanto busca (carregando ...)
+- depois buscar apaga carregando...
+- quando acabar ja vai aparecer os dados e eu coloco o endereço
+
+- uf e cidade não editavel
+- se vier os outros campos, deixa n editavel, se vier deixa editavel
+
+- usuario digita cep e eu tenho que colocar o traço(mascara)
+
+////
+
+- radiobutton sim e nao (telefone) ele n pode preencher os 2 e pelo menos 1 
+    selecionado, iniciar em não
+    se clicado em sim aparece o campo para digitar telefone]
+
+- campo do telefone com mascara tbm ((19) 99173 5030)
+
+
+- botão salvar (salvar as info, dentro json server) ]
+'   verificar se tem algum campo vazio(preencha todos os campos)
+
+- utilizar uma classe endereço
