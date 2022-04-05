@@ -16,54 +16,52 @@
 
   <body>
     <div class="container">
-      <legend>Cadastro</legend>
-      <div class="cep row g-3">
-        <div class="form-floating mb-3 col-md-6">
-          <input
-            id="cep"
-            class="form-control form-control-lg"
-            type="text"
-            name="cep"
-            form="meu-form"
-            value=""
-            placeholder="00.000-000"
-            onblur="obterEndereco()"
-          />
-          <label for="cep">Digite o CEP de sua cidade</label>
-        </div>
-
-        <div class="loading col-md-2">
-          <p>Carregando</p>
-          <img src="./img/loading-buffering.gif" alt="Carregando" />
-        </div>
-      </div>
-
-      <form id="meu-form">
-        <select
-          name="uf"
-          id="uf"
-          class="form-select form-label"
-          aria-label="UF"
-          disabled
-        >
-          <option selected>Selecione um Estado</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-
-        <div class="row g-3">
-          <div class="form-floating mb-3 col-md-6">
+      <legend class="mt-3">Cadastro</legend>
+      <div class="row cep">
+        <div class="col-md-12">
+          <div class=" form-floating mb-3 ">
             <input
-              type="text"
+              id="cep"
               class="form-control"
-              id="estado"
-              placeholder="Estado"
-              disabled
+              type="text"
+              name="cep"
+              form="meu-form"
+              value=""
+              placeholder="00.000-000"
+              onblur="obterEndereco()"
             />
-            <label for="estado">Estado</label>
+            <label for="cep">Digite o CEP de sua cidade</label>
           </div>
-          <div class="form-floating mb-3 col-md-6">
+        </div>
+        
+        <div class="col-md-2">
+          <div class="loading">
+            <div >
+             <p>Carregando</p><img src="./img/loading-buffering.gif" alt="Carregando" />
+            </div>
+            
+          </div>
+        </div>        
+      </div>
+      <form id="meu-form">
+        <div class="row ">
+          <div class="col-sm-2">
+            <div class="form-floating mb-3">
+              <select
+                name="uf"
+                id="uf"
+                class="form-select form-label"
+                aria-label="UF">
+                <option selected>-</option> 
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <label for="uf">Selecione UF</label>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="form-floating mb-3 ">
             <input
               type="text"
               class="form-control"
@@ -73,8 +71,10 @@
             />
             <label for="cidade">Cidade</label>
           </div>
+          </div>
 
-          <div class="form-floating mb-3 col-sm">
+          <div class="col-sm">
+            <div class="form-floating mb-3 ">
             <input
               type="text"
               class="form-control"
@@ -84,65 +84,60 @@
             />
             <label for="bairro">Bairro</label>
           </div>
-          <div class="form-floating mb-3 col-sm-7">
-            <input
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="form-floating mb-3">
+             <input
               type="text"
               class="form-control"
               id="rua"
               placeholder="Logradouro"
               disabled
-            />
-            <label for="rua">Logradouro</label>
+              />
+             <label for="rua">Logradouro</label>
+            </div>
           </div>
-          <div class="form-floating col-sm">
-            <input
-              type="password"
-              class="form-control"
-              id="numero"
-              placeholder="Número"
-            />
-            <label for="numero">Número</label>
+         
+          <div class="col-sm">
+            <div class="form-floating ">
+              <input
+                type="text"
+                class="form-control"
+                id="numero"
+                placeholder="Número"
+              />
+              <label for="numero">Número</label>
+            </div>
           </div>
-        </div>
-        <br />
-        <legend>Telefone</legend>
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="yes"
-            name="tel"
-            value="yes"
-            onClick="telefone()"
-          />
-          <label class="form-check-label" for="flexRadioDefault1"> Sim </label>
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="tel"
-              placeholder="(DDD)9999-9999"
-              disabled
-              hidden
-            />
-          </div>
-        </div>
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="radio"
-            id="no"
-            name="tel"
-            value="no"
-            onClick="telefone()"
-            checked
-          />
-          <label class="form-check-label" for="flexRadioDefault2">Nao</label>
         </div>
 
+        <br/>
+
+        <legend class="mb-3">Telefone</legend>
+        <div class="row">
+          <div class="col-sm-12 mb-3">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="yes">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Deseja registrar telefone?</label>
+            </div>
+          </div>
+            <div class="col-sm-3">
+              <div class="form-floating mb-3">
+                <input
+                type="text"
+                class="form-control"
+                id="tel"
+                placeholder="(DDD)9999-9999"/>
+                <label for="tel">Digite seu telefone</label>
+              </div>
+            </div>
+            
+      </div>
         <button
           type="submit"
-          class="btn btn-outline-primary"
+          class="btn btn-outline-primary mt-3"
           onClick="checarCadastro()"
         >
           Enviar
