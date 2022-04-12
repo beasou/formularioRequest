@@ -20,3 +20,7 @@ p {
 img {
   width: 30px;
 }
+
+.displayphone{
+  display:none;
+} 

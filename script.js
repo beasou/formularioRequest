@@ -1,16 +1,18 @@
+let displayphone = document.querySelector(".displayphone")
+let selecionado = document.getElementById("yes")
+
+
 function telefone() {
-  if (document.getElementById("yes").checked == true) {
-    document.getElementById("tel").hidden = false;
-    document.getElementById("tel").disabled = false;
-    document.getElementById("tel").value = "";
+  if (selecionado.checked == true) {
+    displayphone.style.display = "block"
   }
-  if (document.getElementById("no").checked == true) {
-    document.getElementById("tel").hidden = true;
+  if (selecionado.checked == false) {
+    displayphone.style.display = "none"
   }
 }
 
 function checarCadastro() {
-  if (document.getElementById("yes").checked == true) {
+  if (document.getElementById("tel").value == "") {
     alert("Digite um número de Telefone");
   }
 }
