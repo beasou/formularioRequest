@@ -8,13 +8,29 @@
  const carregando = container.querySelector(".loading")
 
  //-----------------------------------------------------APRENDENDO A POPULAR UM SELECT
- 
- UF.forEach((value)=>{
-   //option = new Option(ufs, ufs.toLocaleLowerCase())
-   //uf.options[uf.options.length] = option
-  option = new Option(value.sigla, value.sigla)
-  uf.options[uf.options.length] = option
- });
+addEventListener('load',function carregandoUF(){
+  fetch("https://brasilapi.com.br/api/ibge/uf/v1", {method:"GET"})
+    .then(function (response) {
+    return response.json()
+  })
+  .then(function (conteudo) {
+    conteudo.forEach((value)=>{
+    option = new Option(value.sigla, value.sigla)
+     //console.log(option)
+     uf.options[uf.options.length] = option
+    console.log(option.value)
+    })
+  })
+}).sort(ordenar)
+function ordenar(a,b){
+  return a.value - b.value;
+}
+//  UF.forEach((value)=>{
+//    //option = new Option(ufs, ufs.toLocaleLowerCase())
+//    //uf.options[uf.options.length] = option
+//   option = new Option(value.sigla, value.sigla)
+//   uf.options[uf.options.length] = option
+//  });
 
 
 //-------------------------------------------------------------------------------------
