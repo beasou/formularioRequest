@@ -27,9 +27,14 @@
               name="cep"
               form="meu-form"
               value=""
+              maxlength="8"
+              required
               placeholder="00.000-000"
-              onblur="obterEndereco()"
+              onkeydown="mCEP(cep)"
+              oninput="carregarEndereco(event)"
+
             />
+            
             <label for="cep">Digite o CEP de sua cidade</label>
           </div>
         </div>
@@ -45,7 +50,7 @@
       </div>
       <form id="meu-form">
         <div class="row ">
-          <div class="col-sm-2">
+          <div class="col-sm-2 col-xm-12">
             <div class="form-floating mb-3">
               <select
                 name="uf"
@@ -57,18 +62,7 @@
               <label for="uf">Selecione UF</label>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="form-floating mb-3 ">
-            <input
-              type="text"
-              class="form-control"
-              id="estado"
-              placeholder="Estado"
-              disabled
-            />
-            <label for="estado">Estado</label>
-          </div>
-          </div>
+          
           <div class="col-md-4">
             <div class="form-floating mb-3 ">
             <input
@@ -138,7 +132,8 @@
                 type="text"
                 class="form-control"
                 id="tel"
-                placeholder="(DDD)9999-9999"/>
+                placeholder="(DDD)9999-9999"
+                onkeyup="mascaraFone(event)"/>
                 <label for="tel">Digite seu telefone</label>
               </div>
             </div>

@@ -8,7 +8,13 @@
  const carregando = container.querySelector(".loading")
 
  //-----------------------------------------------------APRENDENDO A POPULAR UM SELECT
-function ordenar(a,b){
+
+ function carregarEndereco(event){ 
+  if(event.target.value.length == 8){
+    obterEndereco() 
+  }
+}
+ function ordenar(a,b){
   return a.sigla.localeCompare(b.sigla)
 }
 addEventListener('load',function carregandoUF(){
