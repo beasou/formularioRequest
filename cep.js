@@ -7,16 +7,9 @@
  const numero = container.querySelector("#numero")
  const carregando = container.querySelector(".loading")
 
- //-----------------------------------------------------APRENDENDO A POPULAR UM SELECT
-
- function carregarEndereco(event){ 
-  if(event.target.value.length == 8){
-    obterEndereco() 
-  }
-}
- function ordenar(a,b){
-  return a.sigla.localeCompare(b.sigla)
-}
+ //----------------------------------------------------- POPULANDO O SELECT
+ 
+//assim que a pagina é carregada o select é populado com os dados da api
 addEventListener('load',function carregandoUF(){
   fetch("https://brasilapi.com.br/api/ibge/uf/v1", {method:"GET"})
     .then(function (response) {
@@ -26,22 +19,18 @@ addEventListener('load',function carregandoUF(){
     conteudo.sort(ordenar)
     conteudo.forEach((value)=>{
     option = new Option(value.sigla, value.sigla)
-     //console.log(option)
      uf.options[uf.options.length] = option
     })
   })
 })
-//  UF.forEach((value)=>{
-//    //option = new Option(ufs, ufs.toLocaleLowerCase())
-//    //uf.options[uf.options.length] = option
-//   option = new Option(value.sigla, value.sigla)
-//   uf.options[uf.options.length] = option
-//  });
 
+//função para ordenar o select
+function ordenar(a,b){ 
+  return a.sigla.localeCompare(b.sigla)
+}
 
-//-------------------------------------------------------------------------------------
-
- function formularioCarregando() {
+//--------------------------------------------------------------FUNÇÕES DE CEP
+function formularioCarregando() {
   carregando.style.display = "none";
 }
 
@@ -61,41 +50,59 @@ function obterEndereco() {
 
   fetch("https://viacep.com.br/ws/" + cep + "/json/", { method: "GET" })
     .then(function (response) {
-      return response.json();
+      return response.json()
     })
     .then(function (conteudo) {
       //Atualiza os campos com os valores.
       rua.value = conteudo.logradouro
       bairro.value = conteudo.bairro
       cidade.value = conteudo.localidade
-      uf.value = conteudo.uf;
+      uf.value = conteudo.uf
     })
 
     //Verifica se campo cep possui valor informado.
   if (cep != "") {
     //Expressão regular para validar o CEP.
-    var validacep = /^[0-9]{8}$/;
+    var validacep = /^[0-9]{8}$/
 
     //Valida o formato do CEP.
     if (validacep.test(cep)) {
       //Preenche os campos com "..." enquanto consulta webservice.
-      rua.value = "...";
-      bairro.value = "...";
-      cidade.value = "...";
-      uf.value = "...";
+      rua.value = "..."
+      bairro.value = "..."
+      cidade.value = "..."
+      uf.value = "..."
       carregando.style.display = "block"
-      setInterval(formularioCarregando, 1000);
+      setInterval(formularioCarregando, 1000)
     }
     else {
       //cep é inválido.
-      limpa_formulário_cep()
+      limpa_formulario_cep()
       alert("Formato de CEP inválido.")
     }
   } //end if.
   else {
     //cep sem valor, limpa formulário.
-    limpa_formulário_cep()
+    limpa_formulario_cep()
   }
 }
-    //  .catch( err => limpa_formulario_cep()) //NÃO ESTÁ LIMPANDO
-    //    alert("CEP não encontrado.")
+
+
+//-------------------------------------------------MÁSCARA DE CEP 00000-000 E BUSCA
+function mascaraCEP(cep){
+  var valorcep = document.getElementById("cep").attributes[0].ownerElement['value']
+  
+  var retornocep = valorcep.replace(/\D/g, "")
+  // retornocep = retornocep.replace(/^/, "")
+
+  if(retornocep.length > 7){
+    retornocep = retornocep.replace(/^(\d{5})(\d{3}).*/, "$1-$2")
+    obterEndereco() 
+  }
+  else {
+  if(retornocep.length != 0){
+    retornocep = retornocep.replace(/^(\d*)/, "$1")
+  }
+}
+document.getElementById("cep").attributes[0].ownerElement['value'] = retornocep
+}
